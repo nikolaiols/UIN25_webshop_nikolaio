@@ -46,6 +46,11 @@ function addProductToCart(prodid){
 function printcart() {
     //starte med en tom variabel vi kan fylle med html
     let cartHTML = ""
+    //lag klar variabel for pris
+    let cartTotal = 0;
+    //lag variabel for antall produkter 
+    let cartNumber = 0;
+
 
     //gå igjennom cart arrayen og generere html for hvert produkt 
     cart.map((cartprod, index) => {
@@ -58,7 +63,18 @@ function printcart() {
                     <span class="quantity">x<span class="quantity-number">${cartprod.quantity}</span></span>
                     <button class="delete">x</button>
                 </article>`
+
+            //regn ut totalsum 
+            cartTotal += currentproductinfo.price * cartprod.quantity
+            cartNumber+= cartprod.quantity
     })
     //skrive ut html til index fila
     document.getElementById("cart-products").innerHTML = cartHTML
+
+    //skrive ut totalpris
+    document.getElementById("cart-total").innerHTML = cartTotal
+    // skrive ut antall produkter
+    document.getElementById("cartcount").innerHTML = cartNumber
 }
+
+printcart()
