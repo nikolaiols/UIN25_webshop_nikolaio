@@ -26,7 +26,39 @@ document.getElementById("shoppingcart").addEventListener("click", function(){
 //lage addProductToCart
 function addProductToCart(prodid){
     console.log("du vil legge til productid" + prodid)
+    //bruk .some for å sjekke om prodid allerede finnes i cart
+    const idExsist = cart.some(cartprod => cartprod.cartprodid === prodid)//returnerer en true eller false
 
-    cart.push({cartprodid: prodid, quantity: 1})
+    if(idExsist){
+        //oppdatere dette produktet quantity
+        //først: finne indexen til denne id-en 
+        const index = cart.findIndex(p => p.cartprodid === prodid)
+        // oppdatere riktig quantity
+        cart[index].quantity++
+    }else{
+        cart.push({cartprodid: prodid, quantity: 1})
+    }
+
+    printcart()
     console.log(cart)
+}
+
+function printcart() {
+    //starte med en tom variabel vi kan fylle med html
+    let cartHTML = ""
+
+    //gå igjennom cart arrayen og generere html for hvert produkt 
+    cart.map((cartprod, index) => {
+        const currentproduct = products.findIndex(p => p.prodid === cartprod.cartprodid)
+        const currentproductinfo = products[currentproduct]
+        cartHTML += 
+                `<article class="cart-product">
+                    <span class="title">${currentproductinfo.title}</span>
+                    <span class="price">${currentproductinfo.price},-</span>
+                    <span class="quantity">x<span class="quantity-number">${cartprod.quantity}</span></span>
+                    <button class="delete">x</button>
+                </article>`
+    })
+    //skrive ut html til index fila
+    document.getElementById("cart-products").innerHTML = cartHTML
 }
