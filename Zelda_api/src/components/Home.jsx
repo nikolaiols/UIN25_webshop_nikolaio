@@ -2,33 +2,32 @@ import { useState } from "react";
 import "../assets/styles/layout.scss";
 import GameCard from "./GameCard";
 import { data } from "react-router-dom";
+import SearchForm from "./SearchForm";
 
-export default function Home({ games }) {
+export default function Home({ games , setGames}) {
   const [search, setsearch] = useState()
-  const handleSubmit = (e)=>{
-    e.preventDefault();
-  };
-  const handleChange = (e)=>{
-    console.log(e.target.value)
-  };
+ 
+
 
   const handleClick = async()=>{
     fetch(`https://zelda.fanapis.com/api/games?name=${search}`)
     .then(response => response.json())
-    .then((data) => console.log(data.data))
+    .then((data) => setGames(data.data))
+    .catch(error=> console.error("skjedde noe feil med fetch av søk", error));
   }
   return (
     <main>
       <h1>Forside</h1>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="search">her kan du søke etter spill</label>
-        <input type="search" id="search" onChange={handleChange}></input>
-        <button onClick={handleClick}>søk etter spill</button>
-      </form>
+      <SearchForm setSearch={setsearch} handleClick={handleClick} />
       <section className="flex-section">
-      {games?.map((game) => (
+      {
+      games?.length > 0 ? 
+      games?.map((game) => (
         <GameCard key={game.id} game={game} />
-      ))}
+      ))
+    :
+    <p>finner ikke noe på søket ditt</p>
+    }
       </section>
     </main>
   );
