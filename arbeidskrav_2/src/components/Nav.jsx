@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Route, Routes, Router, Link} from "react-router-dom"
+import {Route, Routes, Link} from "react-router-dom"
 
 export default function Nav({ HtmlPage, CssPage, JavascriptPage, ReactPage, SanityPage }){
     return(
