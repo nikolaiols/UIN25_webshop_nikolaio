@@ -1,10 +1,11 @@
 import React from 'react';
 
-import {Route, Routes, Router, Link} from "react-router"
+import {Route, Routes, Router, Link} from "react-router-dom"
 
 export default function Nav({ HtmlPage, CssPage, JavascriptPage, ReactPage, SanityPage }){
     return(
-      <Router>
+    
+      <>
         <nav>
           <ul>
               <li><Link to="/html">HTML</Link></li>
@@ -21,6 +22,7 @@ export default function Nav({ HtmlPage, CssPage, JavascriptPage, ReactPage, Sani
           <Route path="/react" element={<ReactPage />} />
           <Route path="/sanity" element={<SanityPage />} />
         </Routes>
-      </Router> 
+        </>
+      
     );
 }
