@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 import Layout from './components/Layout'
 import Login from './components/Login'
@@ -11,15 +11,19 @@ function App() {
  
  const [storageUser, setStorageUser] = useState(localStorage.getItem("user"));
 
- console.log("kommer fra storage:",storageUser);
+ useEffect(()=>{
+  const login = sessionStorage.getItem("login")
+  setSignedIn(login)
+  console.log("sessionstorage", Boolean(login))
+  },[SignedIn]);
 
   return (
     <>
-    <Layout>
+    <Layout SignedIn={SignedIn} setSignedIn={setSignedIn}>
       {/**alt som legges her blir rendret imellom header og footer, eller bassert på hvor du legger children i layout */}
       <Routes>
-        <Route path='/' element={SignedIn ?<Welcome/> : <Login storageUser={storageUser} setSignedIn={setSignedIn}/>}/>
-        <Route path='login' element={<Login storageUser={storageUser} setSignedIn={setSignedIn}/>}/>
+        <Route path='/' element={SignedIn ?<Welcome/> : <Login storageUser={storageUser} setSignedIn={setSignedIn} SignedIn={SignedIn}/>}/>
+        <Route path='login' element={<Login storageUser={storageUser} setSignedIn={setSignedIn} SignedIn={SignedIn}/>}/>
         <Route path='signup' element={<Signup/>}/>
       </Routes>
 

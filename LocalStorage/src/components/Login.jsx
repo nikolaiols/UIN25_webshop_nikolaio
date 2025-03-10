@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-export default function Login ({storageUser, setSignedIn}){
+export default function Login ({storageUser, setSignedIn, SignedIn}){
     const [userLogin, setUserLogin] = useState([]);
     const [error, setError] = useState()
     const handleChange = (e)=>{
@@ -16,6 +16,8 @@ export default function Login ({storageUser, setSignedIn}){
         const exists = userLogin.username === existingUser.username && userLogin.password === existingUser.password;
         console.log(exists);
         exists ?   setSignedIn(true) :  setError("brukernavn eller passord stemmer ikke")
+
+        sessionStorage.setItem("login", true);
     };
 
     return (
