@@ -1,5 +1,4 @@
 import { Link } from "react-router";
-import NavItem from "./NavItem";
 
 export default function Nav() {
   const categories = [
@@ -21,7 +20,7 @@ export default function Nav() {
     {
       id: 4,
       name: "Marine and Pirates",
-      slug: "marines-and-pirates"
+      slug: "marine-and-pirates"
     },
     {
       id: 5,
@@ -34,7 +33,8 @@ export default function Nav() {
       <ul>
         {categories.map((category) => (
           <li key={category.id}>
-            <Link to={`/category${category.slug}`}>{category.name}</Link>
+            {/* Konstruert category-path via Link-komponent for å støtte React Router*/}
+            <Link to={`/category/${category.slug}`}>{category.name}</Link>
           </li>
         ))}
       </ul>

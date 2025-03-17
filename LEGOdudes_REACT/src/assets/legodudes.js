@@ -39,7 +39,7 @@ export const products = [
   {
     prodid: 4,
     title: "Scuba Kai",
-    category: "Ninjago",
+    category: "Marine and Pirates",
     categorySlug: "marine-and-pirates",
     price: "89",
     storage: 7,

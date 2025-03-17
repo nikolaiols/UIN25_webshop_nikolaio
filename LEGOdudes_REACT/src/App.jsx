@@ -1,12 +1,10 @@
 import { useState } from "react";
-
 // Importerer produkter fra en ekstern fil
 import { products } from "./assets/legodudes";
 
-
 // Importerer stilfilen for appen
 import "./styles/style.css";
-import {Route, Routes} from "react-router"
+import { Route, Routes } from "react-router";
 import Home from "./components/Home";
 import About from "./components/About";
 import Layout from "./components/Layout";
@@ -18,13 +16,13 @@ function App() {
   const [toggle, setToggle] = useState(false);
   const [cart, setCart] = useState([]);
   return (
-  <Layout toggle={toggle} cart={cart} cartCount={cartCount} setToggle={setToggle}>
-   <Routes>
-    <Route path="/" element={<Home cart={cart} setCart={setCart} setCartCount={setCartCount} products={products}/>}></Route>
-    <Route path="/about" element={<About></About>}></Route>
-    <Route path="/category/:slug" element={<CategoryPage products={products} cart={cart} setCart={setCart} cartCount={cartCount}/>}></Route>
-   </Routes>
-  </Layout>
+    <Layout toggle={toggle} cart={cart} cartCount={cartCount} setToggle={setToggle}>
+      <Routes>
+        <Route path="/" element={<Home cart={cart} setCart={setCart} setCartCount={setCartCount} products={products} />}></Route>
+        <Route path="/about" element={<About />}></Route>
+        <Route path="/category/:slug" element={<CategoryPage products={products} cart={cart} setCart={setCart} setCartCount={setCartCount} />}></Route>
+      </Routes>
+    </Layout>
   );
 }
 
