@@ -7,6 +7,15 @@ export const category = {
             name: "categoryname",
             title: "Kategorinavn",
             type: "string"
+        },
+        {
+            name: "categoryslug",
+            title: "Pen URL",
+            type: "slug",
+            options: {
+                source: "categoryname",
+                slugify: input => input.toLowerCase().replace("&", "and").replace(/\s+/g, "-").replace(/[^a-z0-9- ]/g, "")
+            }
         }
     ]
 }
