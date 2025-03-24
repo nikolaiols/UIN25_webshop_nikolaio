@@ -1,4 +1,4 @@
-import {SanityClientConstructor} from "@sanity/client";
+import SanityClientConstructor from "@sanity/client";
 
 export const client = SanityClientConstructor({
     projectId: "13mhafto",
