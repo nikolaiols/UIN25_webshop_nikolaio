@@ -16,7 +16,7 @@ function App() {
 
   const getAllCategories = async() =>{
     const data = await fetchAllCategories()
-    console.log("categories: ", data)
+    setCategories(data);
   }
 
   console.log(products)
@@ -27,6 +27,8 @@ function App() {
   return (
     <main>
       <h1>min nettbutikk</h1>
+      {categories?.map((category) => <button key={category._id}>{category.categoryname}</button>)}
+      
       {products?.map(product => 
         <article key={product._id}>
           <h3>{product.productname}</h3>
