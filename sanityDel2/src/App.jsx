@@ -3,18 +3,27 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import { fetchAllProducts } from './sanity/productsServices'
+import { fetchAllCategories } from './sanity/categoryServices'
 
 function App() {
   const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([])
 
   const getAllProducts = async()=>{
     const data = await fetchAllProducts()
     setProducts(data)
   };
 
+  const getAllCategories = async() =>{
+    const data = await fetchAllCategories()
+    console.log("categories: ", data)
+  }
+
   console.log(products)
 
-  useEffect(()=>{getAllProducts()},[])
+  useEffect(()=>{getAllProducts();
+    getAllCategories()
+  },[])
   return (
     <main>
       <h1>min nettbutikk</h1>
