@@ -9,3 +9,9 @@ export async function fetchAllProducts() {
         }`);
     return data;
 }
+
+export async function fetchProductsByCategories(cat) {
+    const data = await client.fetch(`*[_type == "products" && $cat in categories[]-> categoryname]`, {cat}
+
+    );
+}
