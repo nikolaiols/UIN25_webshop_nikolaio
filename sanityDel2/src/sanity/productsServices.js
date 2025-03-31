@@ -18,6 +18,6 @@ export async function fetchProductsByCategories(cat) {
 }
 
 export async function fetchProductsByslug(slug) {
-    const data = await client.fetch(`*[productslug.current == $slug}]`, {slug});
+    const data = await client.fetch(`*[productslug.current == $slug]`, {slug});
     return data;
 }
