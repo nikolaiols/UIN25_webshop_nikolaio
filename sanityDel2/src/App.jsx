@@ -4,6 +4,11 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import { fetchAllProducts, fetchProductsByCategories } from './sanity/productsServices'
 import { fetchAllCategories } from './sanity/categoryServices'
+import Layout from './components/Layout'
+import { Route, Routes } from 'react-router-dom'
+import Product from './components/Product'
+import Home from './components/Home'
+import Category from './components/Category'
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -30,17 +35,15 @@ function App() {
     getAllCategories()
   },[])
   return (
-    <main>
-      <h1>min nettbutikk</h1>
-      {categories?.map((category) => <button key={category._id} onClick={()=>getProductsByCategory(category.categoryname)}>{category.categoryname}</button>)}
-      
-      {products?.map(product => 
-        <article key={product._id}>
-          <h3>{product.productname}</h3>
-          <img src={product.image.asset.url}/>
-        </article>
-      )}
-    </main>
+    <>
+    <Layout>
+      <Routes>
+        <Route path="/" element={<Home categories={categories} products={products} getProductsByCategory={getProductsByCategory}/>}/>
+        <Route path="product/:product" element={<Product/>}/>
+        <Route path="category/:category" element={<Category/>}/>
+      </Routes>
+    </Layout>
+        </>
   )
 }
 
