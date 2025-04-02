@@ -9,6 +9,16 @@ export const medlem ={
             type: "string"
         },
         {
+            name: "image",
+            title: "Bilde",
+            type: "image"
+        },
+        {
+            name: "epost",
+            title: "E-post",
+            type: "string"
+        },
+        {
             name: "loggforing",
             title: "Loggforing",
             type: "text"
